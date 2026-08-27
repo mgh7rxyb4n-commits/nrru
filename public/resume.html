@@ -4,150 +4,619 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resume - Nithi Hatthakitpaishan</title>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      /* Light Theme (Slate & Electric Teal) */
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --card-subtle: #f1f5f9;
+      --text-main: #334155;
+      --text-title: #0f172a;
+      --text-muted: #64748b;
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-light: rgba(2, 132, 199, 0.08);
+      --accent-glow: rgba(2, 132, 199, 0.15);
+      --border-color: #e2e8f0;
+      --border-focus: #93c5fd;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.12);
+      --badge-bg: #e0f2fe;
+      --badge-text: #0369a1;
+    }
+
+    [data-theme="dark"] {
+      /* Dark Modern Cyber Slate Theme */
+      --bg-color: #0b0f19;
+      --card-bg: #151c2c;
+      --card-subtle: #1e293b;
+      --text-main: #94a3b8;
+      --text-title: #f8fafc;
+      --text-muted: #64748b;
+      --primary: #38bdf8;
+      --primary-hover: #7dd3fc;
+      --primary-light: rgba(56, 189, 248, 0.1);
+      --accent-glow: rgba(56, 189, 248, 0.2);
+      --border-color: #1e293b;
+      --border-focus: #38bdf8;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.6);
+      --badge-bg: rgba(56, 189, 248, 0.15);
+      --badge-text: #38bdf8;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Kanit', sans-serif;
+      font-family: 'Prompt', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     body {
-      background-color: #f8fafc;
-      color: #334155;
-      line-height: 1.6;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.7;
       padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: 
+        radial-gradient(circle at 15% 15%, var(--accent-glow) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, var(--accent-glow) 0%, transparent 40%);
+      background-attachment: fixed;
     }
+
+    /* Scroll Indicator Top Bar */
+    .scroll-progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 1000;
+    }
+    .scroll-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #818cf8);
+      width: 0%;
+      border-radius: 0 2px 2px 0;
+    }
+
     .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #ffffff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      animation: fadeIn 0.8s ease-in-out;
+      max-width: 860px;
+      width: 100%;
+      background: var(--card-bg);
+      padding: 48px;
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+      position: relative;
     }
+
+    /* Floating Header Action Controls */
+    .top-controls {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .theme-toggle {
+      background: var(--card-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-title);
+      padding: 8px 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      color: var(--primary);
+    }
+
+    /* Professional Header Section */
     header {
-      border-bottom: 2px solid #f1f5f9;
-      padding-bottom: 24px;
-      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 36px;
+      margin-bottom: 36px;
+      gap: 24px;
     }
+    .header-text { flex: 1; }
+    
+    .profile-wrapper {
+      position: relative;
+    }
+    .profile-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--primary), #818cf8);
+      z-index: 0;
+      opacity: 0.7;
+      filter: blur(8px);
+    }
+    .profile-img-resume {
+      position: relative;
+      z-index: 1;
+      width: 130px;
+      height: 155px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 2px solid var(--card-bg);
+    }
+
     h1 {
       font-size: 2.2rem;
-      color: #0f172a;
-      font-weight: 600;
-    }
-    .subtitle {
-      font-size: 1.1rem;
-      color: #0284c7;
-      margin-bottom: 8px;
-    }
-    .contact-info {
-      font-size: 0.95rem;
-      color: #64748b;
-    }
-    section {
-      margin-bottom: 32px;
-    }
-    h2 {
-      font-size: 1.3rem;
-      color: #0f172a;
-      border-left: 4px solid #0284c7;
-      padding-left: 12px;
-      margin-bottom: 16px;
-    }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
-    }
-    .skill-card {
-      background: #f1f5f9;
-      padding: 10px 14px;
-      border-radius: 6px;
-      text-align: center;
-      font-weight: 500;
-      color: #334155;
-    }
-    .timeline-item {
-      margin-bottom: 16px;
-    }
-    .timeline-item h3 {
-      font-size: 1.05rem;
-      color: #1e293b;
-    }
-    .timeline-item .date {
-      font-size: 0.85rem;
-      color: #0284c7;
+      color: var(--text-title);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
       margin-bottom: 6px;
     }
-    .btn-back {
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 14px;
       display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #f1f5f9;
-      color: #475569;
+      padding: 4px 12px;
+      background: var(--primary-light);
+      border-radius: 20px;
+    }
+    .contact-info {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .contact-link {
+      color: var(--text-main);
       text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-link:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    /* Layout Sections */
+    section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 1.25rem;
+      color: var(--text-title);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    /* Timeline Section */
+    .timeline-item {
+      margin-bottom: 24px;
+      position: relative;
+      padding-left: 24px;
+      border-left: 2px solid var(--border-color);
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      transition: background-color 0.2s;
+    }
+    .timeline-item:hover::before {
+      background: var(--primary);
+    }
+    .timeline-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-title);
+    }
+    .timeline-meta {
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    /* Filter & Skills UI */
+    .filter-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .filter-btn {
+      background: var(--card-subtle);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+    }
+    .skill-card {
+      background: var(--card-subtle);
+      padding: 12px 14px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-title);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+    .skill-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Modern Card Layout for Projects */
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-focus);
+    }
+    .project-card h3 {
+      font-size: 1.1rem;
+      color: var(--text-title);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0 12px 0;
+    }
+    .tech-tag {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 0.78rem;
+      padding: 3px 10px;
       border-radius: 6px;
-      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    /* Build-Measure-Learn Spotlight Box */
+    .bml-single-card {
+      background: linear-gradient(135deg, var(--card-subtle), var(--card-bg));
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary);
+      border-radius: 16px;
+      padding: 24px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .bml-single-card::after {
+      content: 'BML Concept';
+      position: absolute;
+      right: 16px;
+      bottom: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      opacity: 0.3;
+    }
+
+    /* Modern Footer */
+    .contact-footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .contact-footer-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--card-subtle);
+      color: var(--text-title);
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid var(--border-color);
     }
     .btn-back:hover {
-      background: #e2e8f0;
-      color: #0f172a;
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      transform: translateX(-3px);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    /* Floating Scroll Top Button */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary);
+      color: #ffffff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      z-index: 99;
+    }
+    .scroll-top:hover {
+      transform: translateY(-3px);
+      background: var(--primary-hover);
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 24px; }
+      header { flex-direction: column-reverse; text-align: center; }
+      .contact-info { align-items: center; }
+      .top-controls { position: relative; top: 0; right: 0; margin-bottom: 20px; justify-content: flex-end; }
+      .contact-footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="progressBar"></div>
+  </div>
+
   <div class="container">
+    <div class="top-controls">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+        <span id="themeIcon">🌙</span> <span id="themeText">Dark Mode</span>
+      </button>
+    </div>
+
     <header>
-      <h1>Nithi Hatthakitpaishan</h1>
-      <div class="subtitle">Information Technology Student</div>
-      <div class="contact-info">
-        Nakhon Ratchasima Rajabhat University | Email: 6740214120@nrru.ac.th
+      <div class="header-text">
+        <h1>Nithi Hatthakitpaishan</h1>
+        <div class="subtitle">Information Technology Student</div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span>🎓</span> <span>Nakhon Ratchasima Rajabhat University</span>
+          </div>
+          <div class="contact-item">
+            <span>✉️</span> <a href="mailto:6740214120@nrru.ac.th" class="contact-link">6740214120@nrru.ac.th</a>
+          </div>
+        </div>
+      </div>
+      <div class="profile-wrapper">
+        <img src="image/profile.jpg" alt="Nithi Hatthakitpaishan Profile" class="profile-img-resume">
       </div>
     </header>
 
     <section>
       <h2>About Me</h2>
-      <p>นักศึกษาสาขาเทคโนโลยีสารสนเทศ ที่มีความสนใจในการพัฒนาเว็บแอปพลิเคชันและการจัดการระบบ Cloud (Firebase) มุ่งมั่นที่จะเรียนรู้เทคโนโลยีใหม่ๆ เพื่อนำมาประยุกต์ใช้ในการแก้ปัญหาและสร้างสรรค์นวัตกรรมดิจิทัลที่มีประสิทธิภาพ</p>
+      <p>ผมเชื่อว่าการเรียนเทคโนโลยีไม่มีคำว่าสิ้นสุด ความตั้งใจของผมคือการพัฒนาตัวเองผ่านการลงมือทำจริง เรียนรู้จากข้อผิดพลาด แก้ปัญหาด้วยตัวเอง และไม่หยุดที่จะศึกษาเครื่องมือใหม่ๆ เพื่อสร้างสรรค์เว็บแอปพลิเคชันที่ใช้งานได้จริงและมีประโยชน์ต่อผู้ใช้งานครับ</p>
     </section>
 
     <section>
       <h2>Education</h2>
       <div class="timeline-item">
-        <h3>ปริญญาตรี สาขาวิชาเทคโนโลยีสารสนเทศ (IT)</h3>
-        <div class="date">มหาวิทยาลัยราชภัฏนครราชสีมา (NRRU) | 2024 - ปัจจุบัน</div>
+        <div class="timeline-title">ปริญญาตรี สาขาวิชาเทคโนโลยีสารสนเทศ (IT)</div>
+        <div class="timeline-meta">มหาวิทยาลัยราชภัฏนครราชสีมา (NRRU) | 2024 - ปัจจุบัน</div>
         <p>เน้นการศึกษาด้าน Web Development, Database Systems, Cloud Computing และ Network Basics</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-title">มัธยมศึกษาตอนต้น และ มัธยมศึกษาตอนปลาย</div>
+        <div class="timeline-meta">โรงเรียนราชสีมาวิทยาลัย</div>
+        <p>สำเร็จการศึกษาระดับมัธยมศึกษาตอนต้นและตอนปลาย</p>
       </div>
     </section>
 
     <section>
       <h2>Technical Skills</h2>
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterSkills('all', event)">All</button>
+        <button class="filter-btn" onclick="filterSkills('web', event)">Web</button>
+        <button class="filter-btn" onclick="filterSkills('tools', event)">Cloud & Tools</button>
+      </div>
+
       <div class="skills-grid">
-        <div class="skill-card">HTML5 / CSS3</div>
-        <div class="skill-card">JavaScript</div>
-        <div class="skill-card">Firebase Hosting</div>
-        <div class="skill-card">Git & GitHub</div>
-        <div class="skill-card">VS Code</div>
+        <div class="skill-card" data-cat="web">HTML5 / CSS3</div>
+        <div class="skill-card" data-cat="web">JavaScript</div>
+        <div class="skill-card" data-cat="tools">Firebase Hosting</div>
+        <div class="skill-card" data-cat="tools">Git & GitHub</div>
+        <div class="skill-card" data-cat="tools">VS Code</div>
       </div>
     </section>
 
     <section>
-      <h2>Projects</h2>
-      <div class="timeline-item">
-        <h3>Web Resume & Hosting Deployment</h3>
-        <div class="date">Firebase & GitHub Integration</div>
-        <p>พัฒนาเว็บไซต์ Resume ส่วนตัว เชื่อมต่อฐานข้อมูลระบบควบคุมเวอร์ชันด้วย Git/GitHub และทำการปรับแต่ง Deploy ผ่าน Firebase Hosting</p>
+      <h2>Featured Projects</h2>
+      <div class="project-card">
+        <h3>1. ระบบจองห้องพักในมหาวิทยาลัย (University Room Booking System)</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">Web Application</span>
+          <span class="tech-tag">Database</span>
+          <span class="tech-tag">UX/UI Design</span>
+        </div>
+        <p>ออกแบบและพัฒนาระบบสำหรับการจองห้องพัก/ห้องเรียนในมหาวิทยาลัย อำนวยความสะดวกในการตรวจสอบสถานะห้องว่างและทำการจองผ่านออนไลน์</p>
+      </div>
+
+      <div class="project-card">
+        <h3>2. ระบบสั่งอาหารและรายการเมนูอาหาร (Food Ordering & Menu Management System)</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">Web Application</span>
+          <span class="tech-tag">Menu Management</span>
+          <span class="tech-tag">Frontend</span>
+        </div>
+        <p>พัฒนาระบบสั่งอาหารออนไลน์ที่รองรับการเลือกรายการเมนู คำนวณราคาสินค้า และการจัดการรายการอาหารอย่างเป็นระบบ</p>
       </div>
     </section>
 
-    <a href="index.html" class="btn-back">← กลับหน้าหลัก</a>
+    <section>
+      <h2>Build-Measure-Learn</h2>
+      <div class="bml-single-card">
+        หากกำลังมองหาคนช่วยสร้าง Web Application ระบบจองคิวจัดการร้านค้าปรับแต่งUX/UIหรือช่วย Deploy เว็บขึ้นระบบผมพร้อมเข้ามาช่วยและพร้อมเรียนรู้พัฒนาสิ่งใหม่ๆ ร่วมกับทีมครับ
+      </div>
+    </section>
+
+    <footer class="contact-footer">
+      <a href="index.html" class="btn-back">← กลับหน้าหลัก</a>
+      <div class="contact-footer-links">
+        <div>📧 <strong>Gmail:</strong> <a href="mailto:6740214120@nrru.ac.th" class="contact-link">6740214120@nrru.ac.th</a></div>
+        <div>💻 <strong>GitHub:</strong> <a href="https://github.com/mgh7rxyb4n@privaterelay.appleid.com" target="_blank" rel="noopener noreferrer" class="contact-link">github.com/mgh7rxyb4n@privaterelay.appleid.com</a></div>
+      </div>
+    </footer>
   </div>
 
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to Top">↑</button>
+
+  <script>
+    // Theme Switcher Logic
+    const toggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+    const currentTheme = localStorage.getItem('theme');
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light Mode';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Dark Mode';
+      }
+    }
+
+    if (currentTheme) {
+      applyTheme(currentTheme);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      let isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      let targetTheme = isDark ? 'light' : 'dark';
+      localStorage.setItem('theme', targetTheme);
+      applyTheme(targetTheme);
+    });
+
+    // Skill Filter Logic
+    function filterSkills(category, evt) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.skill-card');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      evt.target.classList.add('active');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-cat') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Scroll Progress & Scroll to Top
+    window.onscroll = function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+
+      const topBtn = document.getElementById('scrollTopBtn');
+      if (winScroll > 250) {
+        topBtn.style.display = 'flex';
+      } else {
+        topBtn.style.display = 'none';
+      }
+    };
+
+    document.getElementById('scrollTopBtn').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
