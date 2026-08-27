@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume - Nithi Hatthakitpaishan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Kanit', sans-serif;
+    }
+    body {
+      background-color: #f8fafc;
+      color: #334155;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    header {
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: #0284c7;
+      margin-bottom: 8px;
+    }
+    .contact-info {
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+    section {
+      margin-bottom: 32px;
+    }
+    h2 {
+      font-size: 1.3rem;
+      color: #0f172a;
+      border-left: 4px solid #0284c7;
+      padding-left: 12px;
+      margin-bottom: 16px;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+    }
+    .skill-card {
+      background: #f1f5f9;
+      padding: 10px 14px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 500;
+      color: #334155;
+    }
+    .timeline-item {
+      margin-bottom: 16px;
+    }
+    .timeline-item h3 {
+      font-size: 1.05rem;
+      color: #1e293b;
+    }
+    .timeline-item .date {
+      font-size: 0.85rem;
+      color: #0284c7;
+      margin-bottom: 6px;
+    }
+    .btn-back {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #f1f5f9;
+      color: #475569;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .btn-back:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Nithi Hatthakitpaishan</h1>
+      <div class="subtitle">Information Technology Student</div>
+      <div class="contact-info">
+        Nakhon Ratchasima Rajabhat University | Email: 6740214120@nrru.ac.th
+      </div>
+    </header>
+
+    <section>
+      <h2>About Me</h2>
+      <p>นักศึกษาสาขาเทคโนโลยีสารสนเทศ ที่มีความสนใจในการพัฒนาเว็บแอปพลิเคชันและการจัดการระบบ Cloud (Firebase) มุ่งมั่นที่จะเรียนรู้เทคโนโลยีใหม่ๆ เพื่อนำมาประยุกต์ใช้ในการแก้ปัญหาและสร้างสรรค์นวัตกรรมดิจิทัลที่มีประสิทธิภาพ</p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="timeline-item">
+        <h3>ปริญญาตรี สาขาวิชาเทคโนโลยีสารสนเทศ (IT)</h3>
+        <div class="date">มหาวิทยาลัยราชภัฏนครราชสีมา (NRRU) | 2024 - ปัจจุบัน</div>
+        <p>เน้นการศึกษาด้าน Web Development, Database Systems, Cloud Computing และ Network Basics</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">HTML5 / CSS3</div>
+        <div class="skill-card">JavaScript</div>
+        <div class="skill-card">Firebase Hosting</div>
+        <div class="skill-card">Git & GitHub</div>
+        <div class="skill-card">VS Code</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <div class="timeline-item">
+        <h3>Web Resume & Hosting Deployment</h3>
+        <div class="date">Firebase & GitHub Integration</div>
+        <p>พัฒนาเว็บไซต์ Resume ส่วนตัว เชื่อมต่อฐานข้อมูลระบบควบคุมเวอร์ชันด้วย Git/GitHub และทำการปรับแต่ง Deploy ผ่าน Firebase Hosting</p>
+      </div>
+    </section>
+
+    <a href="index.html" class="btn-back">← กลับหน้าหลัก</a>
+  </div>
+
+</body>
+</html>

@@ -22,7 +22,7 @@
         margin: 0;
       }
       
-      /* กรอบการ์ดขาว จัดวางแบบแนวนอน (Flexbox) */
+  
       .card {
         background: white;
         padding: 30px;
@@ -59,6 +59,7 @@
         margin-bottom: 20px;
       }
 
+      
       .btn {
         display: block;
         background-color: #00a8ff;
@@ -68,7 +69,22 @@
         text-decoration: none;
         font-weight: bold;
         font-size: 14px;
-        border-radius: 2px;
+        border-radius: 4px;
+        box-shadow: 0 4px 10px rgba(0, 168, 255, 0.25);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      /* เอฟเฟกต์เวลานำเมาส์ไปชี้ (Hover Effect) */
+      .btn:hover {
+        background-color: #0086cc;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 168, 255, 0.45);
+      }
+
+      /* เอฟเฟกต์ตอนกดปุ่ม (Active Effect) */
+      .btn:active {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 8px rgba(0, 168, 255, 0.3);
       }
 
       /* จัดขนาดรูปภาพให้พอดีการ์ด */
@@ -88,14 +104,13 @@
     </style>
   </head>
   <body>
-
-    <!-- การ์ดแสดงผลข้อมูลและรูปภาพ -->
     <div class="card">
       <div class="info">
         <div class="name">Nithi Hatthakitpaishan</div>
         <div class="title">Information Technology Nakhon Ratchasima Rajabhat University</div>
         <div class="contact">6740214120@nrru.ac.th</div>
         <a href="https://informatics.nrru.ac.th" target="_blank" class="btn">LINK OFFICIAL</a>
+       <a href="resume.html" class="btn">LINK OFFICIAL</a>
       </div>
       <div>
         <img src="image/profile.jpg" alt="Profile" class="profile-img">
